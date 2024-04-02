@@ -310,6 +310,17 @@ class BulletFranka(BulletRobot):
             physicsClientId=self.clid,
         )
 
+    def control_position_neural_mp(self, state):
+        assert len(state) in [7, 9]
+        p.setJointMotorControlArray(
+            self.id,
+            jointIndices=list(range(len(state))),
+            controlMode=p.POSITION_CONTROL,
+            targetPositions=state,
+            forces=[500] * len(state),
+            physicsClientId=self.clid,
+        )
+
 
 class BulletFrankaGripper(BulletRobot):
     robot_type = FrankaGripper
@@ -726,6 +737,17 @@ class BulletController(Bullet):
             deterministicOverlappingPairs=1,
             physicsClientId=self.clid,
         )
+
+    def step(self):
+        p.stepSimulation(physicsClientId=self.clid)
+
+class BulletControllerFast(Bullet):
+    def __init__(self, gui=False):
+        """
+        :param gui: Whether to use a gui to visualize the environment.
+            Only one gui instance allowed
+        """
+        super().__init__(gui)
 
     def step(self):
         p.stepSimulation(physicsClientId=self.clid)
