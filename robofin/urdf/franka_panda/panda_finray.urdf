@@ -231,7 +231,7 @@
   <joint name="panda_hand_joint" type="fixed">
     <parent link="panda_link8"/>
     <child link="panda_hand"/>
-    <origin rpy="0 0 -0.785398163397" xyz="0 0 0"/>
+    <origin rpy="0 0 -0.785398163397" xyz="0 0 0.004"/>
   </joint>
   <link name="panda_hand">
   	<inertial>
@@ -245,24 +245,12 @@
       </geometry>
       <material name="panda_white"/>
     </visual>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="mesh/camera/d405_mount.obj"/>
-      </geometry>
-    </visual>
     <collision>
       <geometry>
         <mesh filename="meshes/collision/hand.stl"/>
       </geometry>
       <material name="panda_white"/>
     </collision>
-    <!-- <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="mesh/camera/d405_mount.obj"/>
-      </geometry>
-    </collision> -->
   </link>
 
   <link name="panda_leftfinger">
@@ -335,6 +323,54 @@
     <limit effort="20" lower="0.0" upper="0.04" velocity="0.2"/>
     <mimic joint="panda_finger_joint1"/>
   </joint>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="panda_hand"/>
+    <child link="camera_mount"/>
+    <origin rpy="1.57 0 -1.57" xyz="0 0 0"/>
+  </joint>
+
+  <link name="camera_mount">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="mesh/camera/d405_mount.obj"/>
+      </geometry>
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="mesh/camera/d405_mount.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_joint2" type="fixed">
+    <parent link="camera_mount"/>
+    <child link="camera"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <link name="camera">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 .0115 -0.06"/>
+      <geometry>
+        <box size="0.042 0.023 .042" />
+      </geometry>
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.042 0.023 .042" />
+      </geometry>
+    </collision>
+  </link>
+
+  
 
   <link name="right_gripper">
     <inertial>
