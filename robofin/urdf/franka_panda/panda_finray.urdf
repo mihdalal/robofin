@@ -327,7 +327,7 @@
     <limit effort="20" lower="0.0" upper="0.04" velocity="0.2"/>
     <mimic joint="panda_finger_joint1"/>
   </joint>
-
+  <!-- TODO: fix the pointclouds for this so that we can incorporate this into the PCD, currently this causes the gripper PCD to be incorrect -->
   <!-- <joint name="camera_joint" type="fixed">
     <parent link="panda_hand"/>
     <child link="camera_mount"/>
