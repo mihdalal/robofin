@@ -224,11 +224,16 @@ class FrankaSampler:
         assert bool(self.num_fixed_points is None) ^ bool(num_points is None)
         if config.ndim == 1:
             config = config.unsqueeze(0)
+        if config.shape[-1] == 8:
+            gripper_config = config[:, 7:]
+            # repeat the gripper config twice
+            gripper_config = torch.cat((gripper_config, gripper_config), dim=1)
+        else:
+            gripper_config = self.default_prismatic_value * torch.ones((config.shape[0], 2), device=config.device),
         cfg = torch.cat(
             (
                 config,
-                self.default_prismatic_value
-                * torch.ones((config.shape[0], 2), device=config.device),
+                gripper_config,
             ),
             dim=1,
         )
@@ -340,11 +345,16 @@ class FrankaCollisionSampler:
     def compute_spheres(self, config):
         if config.ndim == 1:
             config = config.unsqueeze(0)
+        if config.shape[-1] == 8:
+            gripper_config = config[:, 7:]
+            # repeat the gripper config twice
+            gripper_config = torch.cat((gripper_config, gripper_config), dim=1)
+        else:
+            gripper_config = self.default_prismatic_value * torch.ones((config.shape[0], 2), device=config.device),
         cfg = torch.cat(
             (
                 config,
-                self.default_prismatic_value
-                * torch.ones((config.shape[0], 2), device=config.device),
+                gripper_config,
             ),
             dim=1,
         )
