@@ -263,7 +263,7 @@
     </contact>
   	<inertial>
       <origin rpy="0 0 0" xyz="0 0.01 0.02"/>
-       <mass value="0.089"/>
+       <mass value="0.081"/>
        <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
     </inertial>
     <visual>
@@ -271,7 +271,9 @@
       <geometry>
         <mesh filename="mesh/finray_finger/finray_finger_visual.obj"/>
       </geometry>
-      <material name="panda_white"/>
+      <material name="Orange">
+            <color rgba="1.0 0.5 0 1.0"/>
+        </material>
     </visual>
     <collision>
     <origin rpy="0 0 3.14159265359" xyz="0 0 0"/>
@@ -292,14 +294,16 @@
 
   	<inertial>
       <origin rpy="0 0 0" xyz="0 -0.01 0.02"/>
-       <mass value="0.089"/>
+       <mass value="0.081"/>
        <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
     </inertial>
     <visual>
       <geometry>
         <mesh filename="mesh/finray_finger/finray_finger_visual.obj"/>
       </geometry>
-      <material name="panda_white"/>
+      <material name="Orange">
+            <color rgba="1.0 0.5 0 1.0"/>
+        </material>
     </visual>
     <collision>
       <geometry>
