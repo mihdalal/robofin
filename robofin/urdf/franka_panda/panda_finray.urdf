@@ -263,7 +263,7 @@
     </contact>
   	<inertial>
       <origin rpy="0 0 0" xyz="0 0.01 0.02"/>
-       <mass value="0.1"/>
+       <mass value="0.089"/>
        <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
     </inertial>
     <visual>
@@ -292,7 +292,7 @@
 
   	<inertial>
       <origin rpy="0 0 0" xyz="0 -0.01 0.02"/>
-       <mass value="0.1"/>
+       <mass value="0.089"/>
        <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
     </inertial>
     <visual>
@@ -336,15 +336,20 @@
       <geometry>
         <mesh filename="mesh/camera/d405_mount.obj"/>
       </geometry>
-      <material name="Cyan">
-        <color rgba="0 1.0 1.0 1.0"/>
-      </material>
+      <material name="Black">
+            <color rgba="0 0 0 1.0"/>
+        </material>
     </visual>
     <collision>
       <geometry>
         <mesh filename="mesh/camera/d405_mount.obj"/>
       </geometry>
     </collision>
+    <inertial>
+        <mass value="0.023"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+    </inertial>
   </link>
 
   <joint name="camera_joint2" type="fixed">
@@ -357,20 +362,23 @@
     <visual>
       <origin rpy="0 0 0" xyz="0.0 .0115 -0.06"/>
       <geometry>
-        <box size="0.042 0.023 .042" />
+        <mesh filename="mesh/camera/cube_mesh.obj"/>
       </geometry>
-      <material name="Cyan">
-        <color rgba="0 1.0 1.0 1.0"/>
-      </material>
+      <material name="Silver">
+            <color rgba="0.75 0.75 0.75 1.0"/>
+        </material>
     </visual>
     <collision>
       <geometry>
-        <box size="0.042 0.023 .042" />
+        <mesh filename="mesh/camera/cube_mesh.obj"/>
       </geometry>
     </collision>
+    <inertial>
+        <mass value="0.06"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+    </inertial>
   </link>
-
-  
 
   <link name="right_gripper">
     <inertial>
