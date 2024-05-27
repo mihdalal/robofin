@@ -229,7 +229,7 @@ class FrankaSampler:
             # repeat the gripper config twice
             gripper_config = torch.cat((gripper_config, gripper_config), dim=1)
         else:
-            gripper_config = self.default_prismatic_value * torch.ones((config.shape[0], 2), device=config.device),
+            gripper_config = self.default_prismatic_value * torch.ones((config.shape[0], 2), device=config.device)
         cfg = torch.cat(
             (
                 config,
