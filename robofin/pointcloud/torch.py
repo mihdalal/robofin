@@ -155,7 +155,7 @@ class FrankaSampler:
         fk = self.robot.link_fk_batch(cfg, use_names=True)
         return fk[frame]
 
-    def sample_end_effector(self, poses, num_points, frame="right_gripper"):
+    def sample_end_effector(self, poses, num_points, gripper_width=None, frame="right_gripper"):
         """
         An internal method--separated so that the public facing method can
         choose whether or not to have gradients
@@ -165,7 +165,10 @@ class FrankaSampler:
         if poses.ndim == 2:
             poses = poses.unsqueeze(0)
         default_cfg = torch.zeros((1, 9), device=poses.device)
-        default_cfg[0, 7:] = self.default_prismatic_value
+        if gripper_width is None:
+            default_cfg[0, 7:] = self.default_prismatic_value
+        else:
+            default_cfg[0, 7:] = gripper_width
         fk = self.robot.visual_geometry_fk_batch(default_cfg)
         eff_link_names = ["panda_hand", "panda_leftfinger", "panda_rightfinger"]
 
