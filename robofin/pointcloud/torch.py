@@ -208,7 +208,7 @@ class FrankaSampler:
             return pc
         return pc[:, np.random.choice(pc.shape[1], num_points, replace=False), :]
 
-    def sample(self, config, num_points=None):
+    def sample(self, config, num_points=None, get_fk=False):
         """
         Samples points from the surface of the robot by calling fk.
 
@@ -260,6 +260,8 @@ class FrankaSampler:
         pc = torch.cat(fk_points, dim=1)
         if num_points is None:
             return pc
+        if get_fk:
+            return pc[:, np.random.choice(pc.shape[1], num_points, replace=False), :], fk
         return pc[:, np.random.choice(pc.shape[1], num_points, replace=False), :]
 
 

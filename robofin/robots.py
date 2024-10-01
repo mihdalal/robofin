@@ -39,8 +39,8 @@ class FrankaRobot:
         ),
     }
     # These are strings because that's needed for Bullet
-    urdf = str(Path(__file__).parent / "urdf" / "franka_panda" / "panda.urdf")
-    # urdf = str(Path(__file__).parent / "urdf" / "franka_panda" / "panda_finray.urdf")
+    # urdf = str(Path(__file__).parent / "urdf" / "franka_panda" / "panda.urdf")
+    urdf = str(Path(__file__).parent / "urdf" / "franka_panda" / "panda_finray.urdf")
     hd_urdf = str(Path(__file__).parent / "urdf" / "franka_panda" / "hd_panda.urdf")
     # This can be a Path because it's only ever used from Python
     pointcloud_cache = Path(__file__).parent / "pointcloud" / "cache" / "franka"
